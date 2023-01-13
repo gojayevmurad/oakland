@@ -1,0 +1,479 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap");
+@import "mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+a {
+  color: black;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  @include desktop {
+    max-width: 1040px;
+  }
+  @include tablet {
+    max-width: 860px;
+  }
+
+  @include mobile {
+    max-width: 620px;
+  }
+
+  @include extra-small {
+    max-width: 440px;
+  }
+
+  @include extra-extra-small {
+    max-width: 100%;
+  }
+}
+
+.header {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 30px 0;
+  background-color: white;
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.178);
+
+  &--content {
+    @include d-flex(space-between);
+    .hamburger{
+      display: none;
+      position: absolute;
+      top: 25px;
+      right: 15px;
+      width: 30px;
+      height: 8px;
+      background-color:#e6382a;
+      @include tablet{
+        display: inline-block
+      }
+    }
+
+    .hamburger::after{
+      content: '';
+      position: absolute;
+      top: 10px;
+      width: 35px;
+      height: 8px;
+      background-color:#e6382a;
+      transition: .1s;
+    }
+    .hamburger::before{
+      content: '';
+      position: absolute;
+      top: -10px;
+      width: 35px;
+      height: 8px;
+      background-color:#e6382a;
+      transition: .1s;
+    }
+
+    .hamburger.active::after{
+      transform: rotate(45deg);
+      top: 0;
+    }
+    .hamburger.active::before{
+      transform: rotate(-45deg);
+      top: 0;
+    }
+
+    .hamburger.active{
+      height: 0;
+    }
+    
+    .hamburger.active~nav{
+        display: block;
+        // position: absolute;
+    }
+    nav {
+      ul {
+        @include d-flex;
+        gap: 40px;
+        li {
+          font-weight: 700;
+          border-bottom: 1px solid transparent;
+        }
+        li:hover {
+          border-bottom: 1px solid black;
+        }
+        li.active {
+          border-bottom: 1px solid black;
+        }
+      }
+      @include tablet {
+        display: none;
+        ul{
+          position: absolute;
+          background-color:white;
+          width: 100%;
+          top: 80px;
+          right: 0;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+.first--part {
+  background-image: url(../assets/photos/bg-first.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  .intro {
+    background-color: white;
+    padding: 300px 0;
+    position: relative;
+    &--content {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include d-flex(center, center, column);
+      gap: 50px;
+      h1 {
+        color: #e6382a;
+        font-size: 4.2rem;
+        text-align: center;
+        line-height: 4rem;
+        font-weight: 900;
+        @include tablet {
+          font-size: 2.5rem;
+          line-height: 3rem;
+        }
+      }
+      button {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        padding: 20px 50px;
+        border-radius: 8px;
+        text-transform: uppercase;
+        font-weight: 900;
+        border: none;
+        transition: 0.3s;
+      }
+      button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+
+  .about--us {
+    background-color: white;
+    padding: 100px 0;
+    @include d-flex(center, center, column);
+    gap: 50px;
+    h2 {
+      color: #e6382a;
+      font-size: 3rem;
+      font-weight: 500;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      opacity: 0.8;
+      width: 850px;
+    }
+
+    .black {
+      width: 1000px;
+      height: 600px;
+      background-color: black;
+    }
+
+    @include tablet {
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        width: 600px;
+      }
+    }
+
+    @include mobile {
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        width: 400px;
+      }
+    }
+
+    @include extra-small {
+      p {
+        width: 280px;
+      }
+    }
+  }
+}
+
+.second--part {
+  background-image: url(../assets/photos/bg-second.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  &--content {
+    .services {
+      padding: 150px 0;
+      background-color: #e6382a;
+
+      ul {
+        @include d-flex(center, center, column);
+        gap: 50px;
+        li {
+          font-size: 3.5rem;
+          font-weight: 600;
+          color: white;
+          letter-spacing: 1px;
+        }
+      }
+
+      @include tablet {
+        padding: 50px 0;
+        ul {
+          gap: 20px;
+          li {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    .projects {
+      background-color: white;
+      padding: 150px 0;
+      &--content {
+        @include d-flex(center, center, column);
+        gap: 100px;
+        h2 {
+          color: #e6382a;
+          font-size: 3rem;
+          font-weight: 500;
+        }
+
+        p {
+          font-size: 1.2rem;
+          font-weight: 500;
+          width: 870px;
+          text-align: center;
+        }
+
+        .gallery {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: 1fr;
+          gap: 20px;
+          place-items: center;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          @include tablet {
+            grid-template-columns: 1fr;
+            img {
+              width: 65%;
+            }
+          }
+          @include mobile {
+            img {
+              width: 90%;
+            }
+          }
+        }
+
+        button {
+          cursor: pointer;
+          padding: 20px 40px;
+          text-transform: uppercase;
+          border: none;
+          outline: none;
+          background-color: black;
+          color: white;
+          font-weight: 800;
+          transition: 0.3s;
+        }
+
+        button:hover {
+          background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        @include tablet {
+          gap: 50px;
+          button {
+            order: 3;
+          }
+          h2 {
+            font-size: 2rem;
+            order: 1;
+          }
+          p {
+            width: 600px;
+            order: 2;
+          }
+          .gallery {
+            order: 4;
+          }
+        }
+
+        @include mobile {
+          p {
+            width: 280px;
+            font-size: 1rem;
+          }
+        }
+      }
+
+      @include tablet {
+        padding: 80px 0;
+      }
+    }
+  }
+}
+
+.outro {
+  background-color: #e6382a;
+  color: white;
+  padding: 150px 100px;
+
+  @include mobile{
+    padding: 150px 10px;
+  }
+
+  &--content {
+    @include d-flex(center, start, column);
+    h2 {
+      font-size: 4rem;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+    p {
+      font-weight: 500;
+    }
+
+    @include tablet{
+      align-items: center;
+      h2{
+        font-size: 2rem;
+        width: 400px;
+      }
+    }
+
+    @include extra-small{
+      h2{
+        width: auto;
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: white;
+  padding: 100px 0;
+  &--content {
+    @include d-flex(center, center, column);
+    gap: 50px;
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 500;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #e6382a;
+      color: white;
+      width: 180px;
+      height: 65px;
+      font-weight: 900;
+      text-transform: uppercase;
+      border: none;
+      outline: none;
+      transition: .3s;
+    }
+
+    button:hover{
+      background-color:#ee5e53;
+    }
+
+    .sociall {
+      margin-top: 50px;
+      @include d-flex;
+      gap: 100px;
+      a{
+        color: white!important;
+      }
+      svg {
+        width: 20px;
+      }
+    }
+
+    @include tablet{
+      gap: 25px;
+
+      h2{
+        font-size: 1.5rem;
+      }
+
+      button{
+        width: 120px;
+        height: 50px;
+      }
+
+      .sociall{
+        gap: 50px;
+        
+      }
+    }
+  }
+}
+
+iframe {
+  border: none;
+  height: 600px;
+  width: 970px;
+  @include tablet {
+    width: 600px;
+    height: 400px;
+  }
+
+  @include mobile {
+    width: 450px;
+    height: 250px;
+  }
+
+  @include extra-small {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.space {
+  height: 800px;
+  @include tablet {
+    height: 300px;
+  }
+}
+
+
